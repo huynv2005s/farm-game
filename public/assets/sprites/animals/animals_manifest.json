@@ -1,0 +1,102 @@
+{
+  "chicken": {
+    "id": "chicken",
+    "name": "Chicken",
+    "vietnameseName": "Gà mái & Gà con",
+    "folder": "/assets/animals/chicken/",
+    "files": [
+      "baby_chick.png",
+      "adult_standing.png",
+      "adult_pecking.png",
+      "hen_nest.png",
+      "egg_normal.png",
+      "egg_golden.png"
+    ]
+  },
+  "duck": {
+    "id": "duck",
+    "name": "Duck",
+    "vietnameseName": "Vịt cỏ",
+    "folder": "/assets/animals/duck/",
+    "files": [
+      "baby_duckling.png",
+      "adult_standing.png",
+      "adult_walking.png",
+      "duck_swimming.png",
+      "duck_feather.png",
+      "duck_egg.png"
+    ]
+  },
+  "guard_dog": {
+    "id": "guard_dog",
+    "name": "Guard Dog",
+    "vietnameseName": "Chó canh nhà",
+    "folder": "/assets/animals/guard_dog/",
+    "files": [
+      "dog_sitting.png",
+      "dog_running.png",
+      "dog_front.png",
+      "dog_barking.png"
+    ]
+  },
+  "bee": {
+    "id": "bee",
+    "name": "Honey Bee",
+    "vietnameseName": "Ong mật",
+    "folder": "/assets/animals/bee/",
+    "files": [
+      "bee_flying.png",
+      "bee_flower.png",
+      "beehive.png",
+      "honey_jar.png"
+    ]
+  },
+  "cow": {
+    "id": "cow",
+    "name": "Dairy Cow",
+    "vietnameseName": "Bò sữa",
+    "folder": "/assets/animals/cow/",
+    "files": [
+      "baby_calf.png",
+      "adult_standing.png",
+      "adult_chewing.png",
+      "milk_bottle.png"
+    ]
+  },
+  "goat": {
+    "id": "goat",
+    "name": "Goat",
+    "vietnameseName": "Dê núi",
+    "folder": "/assets/animals/goat/",
+    "files": [
+      "baby_kid.png",
+      "adult_standing.png",
+      "adult_eating.png",
+      "goat_milk.png"
+    ]
+  },
+  "sheep": {
+    "id": "sheep",
+    "name": "Wool Sheep",
+    "vietnameseName": "Cừu lấy len",
+    "folder": "/assets/animals/sheep/",
+    "files": [
+      "baby_lamb.png",
+      "adult_fluffy.png",
+      "adult_shorn.png",
+      "wool_yarn.png"
+    ]
+  },
+  "pig": {
+    "id": "pig",
+    "name": "Pig",
+    "vietnameseName": "Heo tìm nấm",
+    "folder": "/assets/animals/pig/",
+    "files": [
+      "baby_piglet.png",
+      "adult_standing.png",
+      "adult_digging.png",
+      "truffle_mushroom.png"
+    ]
+  }
+}

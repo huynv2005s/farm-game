@@ -1,0 +1,179 @@
+{
+  "radish": {
+    "id": "radish",
+    "name": "Radish",
+    "vietnameseName": "Củ cải đỏ",
+    "folder": "/assets/crops/radish/",
+    "files": [
+      "seed.png",
+      "stage_1_sprout.png",
+      "stage_2_growing.png",
+      "stage_3_mature.png",
+      "product.png",
+      "product.png"
+    ]
+  },
+  "wheat": {
+    "id": "wheat",
+    "name": "Wheat",
+    "vietnameseName": "Lúa mì",
+    "folder": "/assets/crops/wheat/",
+    "files": [
+      "seed.png",
+      "stage_1_sprout.png",
+      "stage_2_growing.png",
+      "stage_3_mature.png",
+      "product.png",
+      "product.png"
+    ]
+  },
+  "carrot": {
+    "id": "carrot",
+    "name": "Carrot",
+    "vietnameseName": "Cà rốt",
+    "folder": "/assets/crops/carrot/",
+    "files": [
+      "seed.png",
+      "stage_1_sprout.png",
+      "stage_2_growing.png",
+      "stage_3_mature.png",
+      "product.png",
+      "product.png"
+    ]
+  },
+  "tomato": {
+    "id": "tomato",
+    "name": "Tomato",
+    "vietnameseName": "Cà chua",
+    "folder": "/assets/crops/tomato/",
+    "files": [
+      "seed.png",
+      "stage_1_sprout.png",
+      "stage_2_growing.png",
+      "stage_3_mature.png",
+      "product.png",
+      "stage_5.png",
+      "product.png"
+    ]
+  },
+  "corn": {
+    "id": "corn",
+    "name": "Corn",
+    "vietnameseName": "Bắp ngọt",
+    "folder": "/assets/crops/corn/",
+    "files": [
+      "seed.png",
+      "stage_1_sprout.png",
+      "stage_2_growing.png",
+      "stage_3_mature.png",
+      "product.png",
+      "product.png"
+    ]
+  },
+  "sunflower": {
+    "id": "sunflower",
+    "name": "Sunflower",
+    "vietnameseName": "Hướng dương",
+    "folder": "/assets/crops/sunflower/",
+    "files": [
+      "seed.png",
+      "stage_1_sprout.png",
+      "stage_2_growing.png",
+      "stage_3_mature.png",
+      "product.png",
+      "product.png"
+    ]
+  },
+  "potato": {
+    "id": "potato",
+    "name": "Potato",
+    "vietnameseName": "Khoai tây",
+    "folder": "/assets/crops/potato/",
+    "files": [
+      "seed.png",
+      "stage_1_sprout.png",
+      "stage_2_growing.png",
+      "stage_3_mature.png",
+      "product.png",
+      "product.png"
+    ]
+  },
+  "strawberry": {
+    "id": "strawberry",
+    "name": "Strawberry",
+    "vietnameseName": "Dâu tây",
+    "folder": "/assets/crops/strawberry/",
+    "files": [
+      "seed.png",
+      "stage_1_sprout.png",
+      "stage_2_growing.png",
+      "stage_3_mature.png",
+      "product.png",
+      "product.png"
+    ]
+  },
+  "pumpkin": {
+    "id": "pumpkin",
+    "name": "Pumpkin",
+    "vietnameseName": "Bí ngô",
+    "folder": "/assets/crops/pumpkin/",
+    "files": [
+      "seed.png",
+      "stage_1_sprout.png",
+      "stage_2_growing.png",
+      "stage_3_mature.png",
+      "product.png",
+      "product.png"
+    ]
+  },
+  "grape": {
+    "id": "grape",
+    "name": "Grape",
+    "vietnameseName": "Nho tím",
+    "folder": "/assets/crops/grape/",
+    "files": [
+      "seed.png",
+      "stage_1_sprout.png",
+      "stage_2_growing.png",
+      "stage_3_mature.png",
+      "product.png",
+      "product.png"
+    ]
+  },
+  "apple": {
+    "id": "apple",
+    "name": "Apple Tree",
+    "vietnameseName": "Cây táo",
+    "folder": "/assets/crops/apple/",
+    "files": [
+      "sapling.png",
+      "stage_flowering.png",
+      "mature_tree.png",
+      "product.png"
+    ]
+  },
+  "orange": {
+    "id": "orange",
+    "name": "Orange Tree",
+    "vietnameseName": "Cây cam",
+    "folder": "/assets/crops/orange/",
+    "files": [
+      "sapling.png",
+      "stage_flowering.png",
+      "mature_tree.png",
+      "product.png"
+    ]
+  },
+  "coffee": {
+    "id": "coffee",
+    "name": "Coffee Plant",
+    "vietnameseName": "Cây cà phê",
+    "folder": "/assets/crops/coffee/",
+    "files": [
+      "sapling.png",
+      "growing_bush.png",
+      "mature_bush.png",
+      "product.png"
+    ]
+  }
+}

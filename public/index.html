@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#122016">
+  <title>Cozy Farm RPG Online - Nông Trại Vui Vẻ & Đạo Tặc</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>">
+</head>
+<body>
+
+  <!-- =======================================================================
+       1. AUTHENTICATION & CHARACTER SELECTION MODAL
+       ======================================================================= -->
+  <div id="auth-overlay" class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h1 id="auth-title">Đăng Ký & Chọn Nhân Vật</h1>
+        <p id="auth-subtitle">Chọn giới tính nhân vật và đặt tên cho người nông dân của bạn</p>
+      </div>
+
+      <div class="auth-tabs">
+        <button id="tab-register" class="auth-tab active">Đăng Ký Tài Khoản</button>
+        <button id="tab-login" class="auth-tab">Đã Có Tài Khoản</button>
+      </div>
+
+      <form id="auth-form" class="auth-form">
+        <!-- Section: Chọn Nhân Vật (Chỉ hiện khi Đăng Ký) -->
+        <div id="register-extra-fields" class="character-selection-section">
+          <div class="section-label">1. Chọn Giới Tính & Ngoại Hình Nhân Vật</div>
+          <div class="char-cards-grid">
+            <!-- Nhân vật Nam -->
+            <div id="char-card-male" class="char-card selected">
+              <canvas id="preview-canvas-male" class="char-canvas-preview"></canvas>
+              <div class="char-info">
+                <div class="char-name">👨‍🌾 Nông Dân Nam</div>
+                <div class="char-desc">Chăm chỉ, thể lực dồi dào</div>
+              </div>
+            </div>
+
+            <!-- Nhân vật Nữ -->
+            <div id="char-card-female" class="char-card">
+              <canvas id="preview-canvas-female" class="char-canvas-preview"></canvas>
+              <div class="char-info">
+                <div class="char-name">👩‍🌾 Nông Dân Nữ</div>
+                <div class="char-desc">Khéo léo, làm vườn tài ba</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 6px;">
+            <label for="input-char-name">Tên Nhân Vật Trong Trang Trại</label>
+            <input type="text" id="input-char-name" class="form-input" placeholder="Ví dụ: Jack Nông Dân, Daisy..." maxlength="25">
+          </div>
+        </div>
+
+        <!-- Section: Tài Khoản & Mật Khẩu -->
+        <div class="form-group">
+          <label for="input-username">Tên Đăng Nhập</label>
+          <input type="text" id="input-username" class="form-input" placeholder="Nhập tên tài khoản..." required autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label for="input-password">Mật Khẩu</label>
+          <input type="password" id="input-password" class="form-input" placeholder="Nhập mật khẩu..." required autocomplete="current-password">
+        </div>
+
+        <div id="auth-error" class="auth-error-msg"></div>
+
+        <button type="submit" id="btn-submit-auth" class="btn-primary">
+          🌾 Bắt Đầu Cuộc Sống Nông Trại
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       2. PHASER GAME CONTAINER
+       ======================================================================= -->
+  <div id="game-container"></div>
+
+  <!-- =======================================================================
+       3. IN-GAME HUD & CONTROLS OVERLAY
+       ======================================================================= -->
+  <div id="game-hud" class="hud-overlay" style="display: none;">
+    <!-- Top Bar -->
+    <div class="hud-top-bar hud-interactive">
+      <!-- Player Profile Badge -->
+      <div class="hud-player-badge">
+        <div class="player-avatar-mini">
+          <canvas id="player-avatar-canvas"></canvas>
+        </div>
+        <div class="player-meta">
+          <div class="player-name-row">
+            <span id="hud-player-name" class="player-name">Nông Dân</span>
+            <span id="hud-player-level" class="player-level-tag">Lv.1</span>
+          </div>
+          <div class="player-bars-row">
+            <div class="bar-wrap">
+              <div class="energy-bar-track">
+                <div id="hud-energy-fill" class="energy-bar-fill"></div>
+              </div>
+              <span id="hud-energy-text" style="color: var(--energy-color);">100/100 ⚡</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Right Stats & Actions -->
+      <div class="hud-top-right">
+        <div class="hud-stat-pill">
+          🪙 <span id="hud-player-gold">500 G</span>
+        </div>
+        <div class="hud-time-pill">
+          ☀️ Mùa Xuân, Ngày 1 | 08:30
+        </div>
+        <button id="btn-toggle-mobile" class="hud-icon-btn" title="Bật/Tắt Phím Ảo Mobile [M]">
+          🎮
+        </button>
+        <button id="btn-toggle-edit" class="hud-icon-btn" title="Chế Độ Sắp Xếp Trang Trại [B]">
+          🛠️
+        </button>
+        <button id="btn-inventory" class="hud-icon-btn" title="Mở Túi Đồ [I]">
+          🎒
+        </button>
+        <button id="btn-logout" class="hud-icon-btn" title="Đăng Xuất">
+          🚪
+        </button>
+      </div>
+    </div>
+
+    <!-- Edit Mode Banner (Floating Top Bar) -->
+    <div id="edit-mode-banner" class="edit-mode-banner" style="display: none;">
+      <div class="edit-mode-title">
+        <span>🛠️</span>
+        <span>SẮP XẾP BỐ CỤC (Kéo thả đồ vật để xếp lại trang trại)</span>
+      </div>
+      <div class="edit-mode-actions">
+        <button id="btn-save-layout" class="btn-edit-action btn-edit-save">
+          💾 Lưu Bố Cục
+        </button>
+        <button id="btn-reset-layout" class="btn-edit-action btn-edit-reset">
+          ↺ Mặc Định
+        </button>
+        <button id="btn-cancel-edit" class="btn-edit-action btn-edit-cancel">
+          ✕ Thoát
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating Action Prompt -->
+    <div id="action-prompt" class="action-prompt-bubble">
+      <span class="key-tag">Thao Tác</span> Tiến lại gần ô đất để hành động
+    </div>
+
+    <!-- Mobile Virtual Controls Layer (Touch D-Pad & Action Buttons) -->
+    <div id="mobile-controls" class="mobile-controls-layer hud-interactive">
+      <!-- Left Virtual D-Pad -->
+      <div class="virtual-dpad" id="virtual-dpad">
+        <button id="dpad-up" class="dpad-btn dpad-btn-up" data-dir="up">▲</button>
+        <div class="dpad-middle-row">
+          <button id="dpad-left" class="dpad-btn dpad-btn-left" data-dir="left">◀</button>
+          <div class="dpad-center-knob"></div>
+          <button id="dpad-right" class="dpad-btn dpad-btn-right" data-dir="right">▶</button>
+        </div>
+        <button id="dpad-down" class="dpad-btn dpad-btn-down" data-dir="down">▼</button>
+      </div>
+
+      <!-- Right Mobile Action Buttons -->
+      <div class="virtual-actions" id="virtual-actions">
+        <button id="btn-mobile-sprint" class="mobile-btn-circle btn-sprint" title="Chạy nhanh">
+          <span class="m-icon">🏃</span>
+          <span class="m-label">Chạy</span>
+        </button>
+        <button id="btn-mobile-action" class="mobile-btn-circle btn-action" title="Tương tác nông trại">
+          <span id="mobile-action-icon" class="m-icon">⛏️</span>
+          <span class="m-label">Thao Tác</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom Quick Hotbar -->
+    <div class="hud-bottom-bar hud-interactive">
+      <div class="hotbar-container">
+        <div class="hotbar-slot active" data-slot="1">
+          <span class="hotbar-key">1</span>
+          <span class="hotbar-icon">⛏️</span>
+        </div>
+        <div class="hotbar-slot" data-slot="2">
+          <span class="hotbar-key">2</span>
+          <span class="hotbar-icon">💧</span>
+        </div>
+        <div class="hotbar-slot" data-slot="3">
+          <span class="hotbar-key">3</span>
+          <span class="hotbar-icon">🌾</span>
+          <span id="count-slot-3" class="hotbar-count">0</span>
+        </div>
+        <div class="hotbar-slot" data-slot="4">
+          <span class="hotbar-key">4</span>
+          <span class="hotbar-icon">🥕</span>
+          <span id="count-slot-4" class="hotbar-count">0</span>
+        </div>
+        <div class="hotbar-slot" data-slot="5">
+          <span class="hotbar-key">5</span>
+          <span class="hotbar-icon">🍓</span>
+          <span id="count-slot-5" class="hotbar-count">0</span>
+        </div>
+        <div class="hotbar-slot" data-slot="6">
+          <span class="hotbar-key">6</span>
+          <span class="hotbar-icon">🧺</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       4. INVENTORY MODAL
+       ======================================================================= -->
+  <div id="inventory-modal" class="modal-backdrop" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">🎒 Túi Đồ & Kho Nông Sản</div>
+        <button id="modal-close-btn" class="modal-close-btn">✕</button>
+      </div>
+      <div id="inventory-grid" class="inventory-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/vendor/phaser.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/charPreview.js"></script>
+  <script src="/js/game/FarmScene.js"></script>
+  <script src="/js/main.js"></script>
+
+</body>
+</html>
